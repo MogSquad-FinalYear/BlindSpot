@@ -1,0 +1,9 @@
+label,high_freq_low_freq_log_energy_gap
+real_BigGan_paired,-1.748
+fake_BigGan,-3.288
+real_Glide_paired,-1.762
+fake_Glide,-3.025
+real_shared_pool_flux_sd3_sdxl,-1.837
+fake_flux,-1.978
+fake_sd3,-1.861
+fake_sdxl,-1.882
