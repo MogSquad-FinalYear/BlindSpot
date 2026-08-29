@@ -1,0 +1,13 @@
+generator,direction,rank,copied_as,true_label,pred_score,original_path
+sd3,fake_confidently_called_real,1,fake_confidently_called_real_01.png,1,1.6646056337776827e-06,/home/student/data/genimagepp/sd3/stable_diffusion_v_3_0/val/1_fake/teddy bear_2.png
+sd3,fake_confidently_called_real,2,fake_confidently_called_real_02.png,1,2.303265773662133e-06,/home/student/data/genimagepp/sd3/stable_diffusion_v_3_0/val/1_fake/magnetic compass_2.png
+sd3,fake_confidently_called_real,3,fake_confidently_called_real_03.png,1,3.2286227451550076e-06,/home/student/data/genimagepp/sd3/stable_diffusion_v_3_0/val/1_fake/horse-drawn vehicle_4.png
+sd3,fake_confidently_called_real,4,fake_confidently_called_real_04.png,1,3.243340188419097e-06,/home/student/data/genimagepp/sd3/stable_diffusion_v_3_0/val/1_fake/magnetic compass_5.png
+sd3,fake_confidently_called_real,5,fake_confidently_called_real_05.png,1,6.273201051953947e-06,/home/student/data/genimagepp/sd3/stable_diffusion_v_3_0/val/1_fake/mousetrap_4.png
+sd3,fake_confidently_called_real,6,fake_confidently_called_real_06.png,1,7.392792213067878e-06,/home/student/data/genimagepp/sd3/stable_diffusion_v_3_0/val/1_fake/Alaskan Malamute_4.png
+sd3,real_confidently_called_fake,1,real_confidently_called_fake_01.JPEG,0,0.9998593330383301,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n02325366_8879.JPEG
+sd3,real_confidently_called_fake,2,real_confidently_called_fake_02.JPEG,0,0.999222993850708,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n03958227_8243.JPEG
+sd3,real_confidently_called_fake,3,real_confidently_called_fake_03.JPEG,0,0.9990915060043335,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n03146219_11322.JPEG
+sd3,real_confidently_called_fake,4,real_confidently_called_fake_04.JPEG,0,0.9989702701568604,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n02526121_9020.JPEG
+sd3,real_confidently_called_fake,5,real_confidently_called_fake_05.JPEG,0,0.9983115196228027,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01910747_2726.JPEG
+sd3,real_confidently_called_fake,6,real_confidently_called_fake_06.JPEG,0,0.9972911477088928,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n02114367_14027.JPEG
