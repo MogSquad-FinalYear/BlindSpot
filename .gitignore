@@ -1,0 +1,26 @@
+# VideoRAG is a separate repository — never committed here
+VideoRAG/
+
+# Tooling / editor
+.claude/
+*.deb
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Large generated-image datasets — too large for git, regenerate/download instead
+# (see README.md for provenance and how to obtain each)
+genimagepp/
+real_coco/
+
+# Model checkpoints and adversarial-attack build artifacts
+genimagepp_detectors/attack_code/weights/
+genimagepp_detectors/attack_code/__pycache__/
+
+# OS cruft
+.DS_Store
+Thumbs.db
