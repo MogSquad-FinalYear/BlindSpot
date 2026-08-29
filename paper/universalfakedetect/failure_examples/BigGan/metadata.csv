@@ -1,0 +1,13 @@
+generator,direction,rank,copied_as,true_label,pred_score,original_path
+BigGan,fake_confidently_called_real,1,fake_confidently_called_real_01.png,1,0.0003614246379584074,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/992_biggan_00020.png
+BigGan,fake_confidently_called_real,2,fake_confidently_called_real_02.png,1,0.0004477874899748713,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/102_biggan_00035.png
+BigGan,fake_confidently_called_real,3,fake_confidently_called_real_03.png,1,0.0006988534587435424,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/361_biggan_00127.png
+BigGan,fake_confidently_called_real,4,fake_confidently_called_real_04.png,1,0.0007738925633020699,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/992_biggan_00039.png
+BigGan,fake_confidently_called_real,5,fake_confidently_called_real_05.png,1,0.0011153430677950382,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/269_biggan_00039.png
+BigGan,fake_confidently_called_real,6,fake_confidently_called_real_06.png,1,0.0014457080978900194,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/334_biggan_00143.png
+BigGan,real_confidently_called_fake,1,real_confidently_called_fake_01.JPEG,0,0.9986969828605652,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00041001.JPEG
+BigGan,real_confidently_called_fake,2,real_confidently_called_fake_02.JPEG,0,0.9980475902557373,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00049690.JPEG
+BigGan,real_confidently_called_fake,3,real_confidently_called_fake_03.JPEG,0,0.9913119077682495,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00044052.JPEG
+BigGan,real_confidently_called_fake,4,real_confidently_called_fake_04.JPEG,0,0.9904628396034241,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00015182.JPEG
+BigGan,real_confidently_called_fake,5,real_confidently_called_fake_05.JPEG,0,0.9888007640838623,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00022387.JPEG
+BigGan,real_confidently_called_fake,6,real_confidently_called_fake_06.JPEG,0,0.9864867925643921,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00007885.JPEG
