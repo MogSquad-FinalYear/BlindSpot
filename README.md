@@ -1,4 +1,6 @@
-# BlindSpot
+# Blindspot
+
+<img src="ai.png" width="1000">
 
 **Why deepfake detectors fail on modern diffusion generators.**
 
