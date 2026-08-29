@@ -1,0 +1,6 @@
+generator,n_real,n_fake,real_highfreq_energy_mean,real_highfreq_energy_std,fake_highfreq_energy_mean,fake_highfreq_energy_std,fake_minus_real,pct_change_vs_real
+BigGan,300,300,0.8829,0.6142,-1.6204,0.2053,-2.5033,-283.54
+Glide,300,300,0.9133,0.6232,-1.227,0.1687,-2.1403,-234.35
+flux,300,300,0.7252,0.7678,0.4963,0.5111,-0.2288,-31.56
+sd3,300,300,0.7252,0.7678,0.8344,0.5212,0.1093,15.07
+sdxl,300,300,0.7252,0.7678,0.345,0.6079,-0.3802,-52.43
