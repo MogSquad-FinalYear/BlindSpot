@@ -1,0 +1,51 @@
+generator,detector_A,detector_B,n_fake_shared,A_correct_B_wrong,A_wrong_B_correct,p_value,p_str
+BigGan,UniversalFakeDetect,NPR,6000,835,905,0.0980694235877298,0.0981
+BigGan,UniversalFakeDetect,GenImage++ ResNet-50 baseline,6000,4958,6,0.0,<1e-300
+BigGan,UniversalFakeDetect,GenImage++ CLIP baseline,6000,4463,62,0.0,<1e-300
+BigGan,UniversalFakeDetect,GenImage++ CLIP-LoRA (OMAT),6000,10,1015,1.8963814665088268e-285,1.9e-285
+BigGan,NPR,GenImage++ ResNet-50 baseline,6000,5027,5,0.0,<1e-300
+BigGan,NPR,GenImage++ CLIP baseline,6000,4540,69,0.0,<1e-300
+BigGan,NPR,GenImage++ CLIP-LoRA (OMAT),6000,16,951,4.021583824968697e-257,4.02e-257
+BigGan,GenImage++ ResNet-50 baseline,GenImage++ CLIP baseline,6000,17,568,3.9836859069993634e-144,3.98e-144
+BigGan,GenImage++ ResNet-50 baseline,GenImage++ CLIP-LoRA (OMAT),6000,0,5957,0.0,<1e-300
+BigGan,GenImage++ CLIP baseline,GenImage++ CLIP-LoRA (OMAT),6000,0,5406,0.0,<1e-300
+Glide,UniversalFakeDetect,NPR,6000,97,4113,0.0,<1e-300
+Glide,UniversalFakeDetect,GenImage++ ResNet-50 baseline,6000,1572,286,1.0619423754095858e-214,1.06e-214
+Glide,UniversalFakeDetect,GenImage++ CLIP baseline,6000,459,2963,0.0,<1e-300
+Glide,UniversalFakeDetect,GenImage++ CLIP-LoRA (OMAT),6000,2,4350,0.0,<1e-300
+Glide,NPR,GenImage++ ResNet-50 baseline,6000,5339,37,0.0,<1e-300
+Glide,NPR,GenImage++ CLIP baseline,6000,1719,207,2.774911196659653e-296,2.77e-296
+Glide,NPR,GenImage++ CLIP-LoRA (OMAT),6000,3,335,2.2988433918561493e-95,2.3e-95
+Glide,GenImage++ ResNet-50 baseline,GenImage++ CLIP baseline,6000,72,3862,0.0,<1e-300
+Glide,GenImage++ ResNet-50 baseline,GenImage++ CLIP-LoRA (OMAT),6000,0,5634,0.0,<1e-300
+Glide,GenImage++ CLIP baseline,GenImage++ CLIP-LoRA (OMAT),6000,2,1846,0.0,<1e-300
+flux,UniversalFakeDetect,NPR,6000,8,5452,0.0,<1e-300
+flux,UniversalFakeDetect,GenImage++ ResNet-50 baseline,6000,230,3103,0.0,<1e-300
+flux,UniversalFakeDetect,GenImage++ CLIP baseline,6000,67,4836,0.0,<1e-300
+flux,UniversalFakeDetect,GenImage++ CLIP-LoRA (OMAT),6000,15,5384,0.0,<1e-300
+flux,NPR,GenImage++ ResNet-50 baseline,6000,2624,53,0.0,<1e-300
+flux,NPR,GenImage++ CLIP baseline,6000,785,110,2.562345366620262e-126,2.56e-126
+flux,NPR,GenImage++ CLIP-LoRA (OMAT),6000,203,128,4.4339592124143266e-05,4.43e-05
+flux,GenImage++ ResNet-50 baseline,GenImage++ CLIP baseline,6000,288,2184,0.0,<1e-300
+flux,GenImage++ ResNet-50 baseline,GenImage++ CLIP-LoRA (OMAT),6000,20,2516,0.0,<1e-300
+flux,GenImage++ CLIP baseline,GenImage++ CLIP-LoRA (OMAT),6000,141,741,5.968555348528408e-99,5.97e-99
+sd3,UniversalFakeDetect,NPR,6000,69,4772,0.0,<1e-300
+sd3,UniversalFakeDetect,GenImage++ ResNet-50 baseline,6000,318,3581,0.0,<1e-300
+sd3,UniversalFakeDetect,GenImage++ CLIP baseline,6000,85,4699,0.0,<1e-300
+sd3,UniversalFakeDetect,GenImage++ CLIP-LoRA (OMAT),6000,17,5211,0.0,<1e-300
+sd3,NPR,GenImage++ ResNet-50 baseline,6000,1820,380,1.4821424035643562e-224,1.48e-224
+sd3,NPR,GenImage++ CLIP baseline,6000,622,533,0.009585795118817327,0.00959
+sd3,NPR,GenImage++ CLIP-LoRA (OMAT),6000,77,568,2.0933532278668557e-93,2.09e-93
+sd3,GenImage++ ResNet-50 baseline,GenImage++ CLIP baseline,6000,315,1666,1.9520747703037327e-221,1.95e-221
+sd3,GenImage++ ResNet-50 baseline,GenImage++ CLIP-LoRA (OMAT),6000,48,1979,0.0,<1e-300
+sd3,GenImage++ CLIP baseline,GenImage++ CLIP-LoRA (OMAT),6000,74,654,6.499483263008415e-117,6.5e-117
+sdxl,UniversalFakeDetect,NPR,18300,3289,6238,1.1140644975962478e-203,1.11e-203
+sdxl,UniversalFakeDetect,GenImage++ ResNet-50 baseline,18300,5963,1701,0.0,<1e-300
+sdxl,UniversalFakeDetect,GenImage++ CLIP baseline,18300,1669,8706,0.0,<1e-300
+sdxl,UniversalFakeDetect,GenImage++ CLIP-LoRA (OMAT),18300,32,11131,0.0,<1e-300
+sdxl,NPR,GenImage++ ResNet-50 baseline,18300,8645,1434,0.0,<1e-300
+sdxl,NPR,GenImage++ CLIP baseline,18300,2387,6475,0.0,<1e-300
+sdxl,NPR,GenImage++ CLIP-LoRA (OMAT),18300,82,8232,0.0,<1e-300
+sdxl,GenImage++ ResNet-50 baseline,GenImage++ CLIP baseline,18300,379,11678,0.0,<1e-300
+sdxl,GenImage++ ResNet-50 baseline,GenImage++ CLIP-LoRA (OMAT),18300,1,15362,0.0,<1e-300
+sdxl,GenImage++ CLIP baseline,GenImage++ CLIP-LoRA (OMAT),18300,74,4136,0.0,<1e-300
