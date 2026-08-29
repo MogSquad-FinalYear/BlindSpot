@@ -1,0 +1,13 @@
+generator,direction,rank,copied_as,true_label,pred_score,original_path
+BigGan,fake_confidently_called_real,1,fake_confidently_called_real_01.png,1,0.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/010_biggan_00020.png
+BigGan,fake_confidently_called_real,2,fake_confidently_called_real_02.png,1,0.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/012_biggan_00020.png
+BigGan,fake_confidently_called_real,3,fake_confidently_called_real_03.png,1,0.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/021_biggan_00127.png
+BigGan,fake_confidently_called_real,4,fake_confidently_called_real_04.png,1,0.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/037_biggan_00035.png
+BigGan,fake_confidently_called_real,5,fake_confidently_called_real_05.png,1,0.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/041_biggan_00074.png
+BigGan,fake_confidently_called_real,6,fake_confidently_called_real_06.png,1,0.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/ai/072_biggan_00020.png
+BigGan,real_confidently_called_fake,1,real_confidently_called_fake_01.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00000368.JPEG
+BigGan,real_confidently_called_fake,2,real_confidently_called_fake_02.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00001073.JPEG
+BigGan,real_confidently_called_fake,3,real_confidently_called_fake_03.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00001076.JPEG
+BigGan,real_confidently_called_fake,4,real_confidently_called_fake_04.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00001118.JPEG
+BigGan,real_confidently_called_fake,5,real_confidently_called_fake_05.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00001123.JPEG
+BigGan,real_confidently_called_fake,6,real_confidently_called_fake_06.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/val/nature/ILSVRC2012_val_00001206.JPEG
