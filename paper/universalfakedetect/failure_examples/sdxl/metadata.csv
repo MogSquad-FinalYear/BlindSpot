@@ -1,0 +1,13 @@
+generator,direction,rank,copied_as,true_label,pred_score,original_path
+sdxl,fake_confidently_called_real,1,fake_confidently_called_real_01.png,1,2.233634148751662e-07,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/Rococo_16905.png
+sdxl,fake_confidently_called_real,2,fake_confidently_called_real_02.png,1,4.909742870040645e-07,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/game-mario_5813.png
+sdxl,fake_confidently_called_real,3,fake_confidently_called_real_03.png,1,1.3016084494665847e-06,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/game-minecraft_5950.png
+sdxl,fake_confidently_called_real,4,fake_confidently_called_real_04.png,1,1.6854585282999324e-06,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/game-retro game_6239.png
+sdxl,fake_confidently_called_real,5,fake_confidently_called_real_05.png,1,1.7236483245142153e-06,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/Adorable Kawaii_10979.png
+sdxl,fake_confidently_called_real,6,fake_confidently_called_real_06.png,1,1.7658027218203642e-06,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/sai-lowpoly_1210.png
+sdxl,real_confidently_called_fake,1,real_confidently_called_fake_01.JPEG,0,0.9998593330383301,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n02325366_8879.JPEG
+sdxl,real_confidently_called_fake,2,real_confidently_called_fake_02.JPEG,0,0.9993866682052612,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n04179913_5795.JPEG
+sdxl,real_confidently_called_fake,3,real_confidently_called_fake_03.JPEG,0,0.999222993850708,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n03958227_8243.JPEG
+sdxl,real_confidently_called_fake,4,real_confidently_called_fake_04.JPEG,0,0.9990915060043335,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n03146219_11322.JPEG
+sdxl,real_confidently_called_fake,5,real_confidently_called_fake_05.JPEG,0,0.9989702701568604,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n02526121_9020.JPEG
+sdxl,real_confidently_called_fake,6,real_confidently_called_fake_06.JPEG,0,0.9983115196228027,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01910747_2726.JPEG
