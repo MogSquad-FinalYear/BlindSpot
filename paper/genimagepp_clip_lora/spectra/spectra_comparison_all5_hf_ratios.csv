@@ -1,0 +1,9 @@
+label,high_freq_low_freq_gap
+real_shared_pool,-1.8528053365833799
+real_biggan_paired,-1.7473797506756161
+real_glide_paired,-1.7388786480222225
+fake_BigGan,-3.2700553200219584
+fake_Glide,-3.0146448923660882
+fake_flux,-1.9893820575907617
+fake_sd3,-1.8211725368732743
+fake_sdxl,-1.867864102185858

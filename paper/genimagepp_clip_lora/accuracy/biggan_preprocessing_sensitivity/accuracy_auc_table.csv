@@ -1,0 +1,3 @@
+generator,n_real,n_fake,AP,AUC,acc_real,acc_fake,acc_overall,TN,FP,FN,TP
+BigGan_upsample,6000,6000,99.55,99.7,94.82,99.7,97.26,5689,311,18,5982
+BigGan_pad,6000,6000,64.78,69.13,93.12,16.28,54.7,5587,413,5023,977

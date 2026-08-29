@@ -1,0 +1,13 @@
+generator,direction,rank,copied_as,true_label,pred_score,original_path
+flux,fake_confidently_called_real,1,fake_confidently_called_real_01.png,1,0.0,/home/student/data/genimagepp/flux/flux/val/1_fake/lighter_5.png
+flux,fake_confidently_called_real,2,fake_confidently_called_real_02.png,1,0.0001,/home/student/data/genimagepp/flux/flux/val/1_fake/projector_5.png
+flux,fake_confidently_called_real,3,fake_confidently_called_real_03.png,1,0.0003,/home/student/data/genimagepp/flux/flux/val/1_fake/pole_5.png
+flux,fake_confidently_called_real,4,fake_confidently_called_real_04.png,1,0.0004,/home/student/data/genimagepp/flux/flux/val/1_fake/half-track_4.png
+flux,fake_confidently_called_real,5,fake_confidently_called_real_05.png,1,0.0004,/home/student/data/genimagepp/flux/flux/val/1_fake/tractor_3.png
+flux,fake_confidently_called_real,6,fake_confidently_called_real_06.png,1,0.001,/home/student/data/genimagepp/flux/flux/val/1_fake/amphibious vehicle_0.png
+flux,real_confidently_called_fake,1,real_confidently_called_fake_01.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01443537_19694.JPEG
+flux,real_confidently_called_fake,2,real_confidently_called_fake_02.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01491361_5159.JPEG
+flux,real_confidently_called_fake,3,real_confidently_called_fake_03.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01530575_9144.JPEG
+flux,real_confidently_called_fake,4,real_confidently_called_fake_04.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01532829_1097.JPEG
+flux,real_confidently_called_fake,5,real_confidently_called_fake_05.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01534433_392.JPEG
+flux,real_confidently_called_fake,6,real_confidently_called_fake_06.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01582220_5099.JPEG
