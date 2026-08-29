@@ -1,0 +1,19 @@
+One important thing to flag before you write this up as "in-distribution," though: fc_weights.pth is the original UniversalFakeDetect checkpoint, which — per the paper it comes from — was trained only on ProGAN-generated images, not on BigGAN or glide. So strictly speaking, none of your five generators (BigGAN, glide, flux, sd3, sdxl) are what this specific classifier actually saw during training. BigGAN is at least architecturally closer (also a GAN, similar era) than the diffusion-based ones, but "in-distribution" isn't quite accurate framing for any of them here.
+
+This isn't a problem for your paper — it's arguably a better story: you're now measuring a detector's raw zero-shot generalization across the full spectrum from old-GAN to new-DiT, rather than "trained on X, tested on Y." Just reframe your Phase 3 language accordingly — something like "generalization gradient from GAN-era to 2025-era DiT generators" rather than "in-distribution vs. OOD," since the latter implies a training/test split that didn't actually happen with this checkpoint. Worth deciding now, since it'll shape how you present the BigGAN/glide numbers relative to flux/sd3/sdxl in your results table.
+
+Squared difference of image Fourier transforms is pointless and comes from a misunderstanding. It’s the same as a standard L2 loss.
+
+predictions_sd3.csv (92 misclassified)
+predictions_sdxl.csv (67 misclassified)
+predictions_flux.csv (98 misclassified)
+
+frequency_analysis
+real: found 162000 images
+fake_flux: found 6000 images
+fake_sd3: found 6000 images
+fake_sdxl: found 18300 images
+real: averaged over 200 images, high-freq/low-freq log-energy gap = -1.817
+fake_flux: averaged over 200 images, high-freq/low-freq log-energy gap = -1.987
+fake_sd3: averaged over 200 images, high-freq/low-freq log-energy gap = -1.835
+fake_sdxl: averaged over 200 images, high-freq/low-freq log-energy gap = -1.913
