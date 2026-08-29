@@ -1,0 +1,6 @@
+[submodule "NPR-DeepfakeDetection"]
+	path = NPR-DeepfakeDetection
+	url = https://github.com/chuangchuangtan/NPR-DeepfakeDetection.git
+[submodule "UniversalFakeDetect"]
+	path = UniversalFakeDetect
+	url = https://github.com/WisconsinAIVision/UniversalFakeDetect.git
