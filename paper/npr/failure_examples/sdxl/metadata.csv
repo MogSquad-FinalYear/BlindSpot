@@ -1,0 +1,13 @@
+generator,direction,rank,copied_as,true_label,pred_score,original_path
+sdxl,fake_confidently_called_real,1,fake_confidently_called_real_01.png,1,0.0,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/Abstract Expressionism_10501.png
+sdxl,fake_confidently_called_real,2,fake_confidently_called_real_02.png,1,0.0,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/Abstract Expressionism_10502.png
+sdxl,fake_confidently_called_real,3,fake_confidently_called_real_03.png,1,0.0,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/Abstract Expressionism_10503.png
+sdxl,fake_confidently_called_real,4,fake_confidently_called_real_04.png,1,0.0,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/Abstract Expressionism_10505.png
+sdxl,fake_confidently_called_real,5,fake_confidently_called_real_05.png,1,0.0,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/Abstract Expressionism_10506.png
+sdxl,fake_confidently_called_real,6,fake_confidently_called_real_06.png,1,0.0,/home/student/data/genimagepp/sdxl/sdxl_style/val/1_fake/Abstract Expressionism_10507.png
+sdxl,real_confidently_called_fake,1,real_confidently_called_fake_01.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01440764_11972.JPEG
+sdxl,real_confidently_called_fake,2,real_confidently_called_fake_02.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01440764_8689.JPEG
+sdxl,real_confidently_called_fake,3,real_confidently_called_fake_03.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01491361_2269.JPEG
+sdxl,real_confidently_called_fake,4,real_confidently_called_fake_04.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01494475_3233.JPEG
+sdxl,real_confidently_called_fake,5,real_confidently_called_fake_05.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01494475_376.JPEG
+sdxl,real_confidently_called_fake,6,real_confidently_called_fake_06.JPEG,0,1.0,/home/student/Downloads/imagenet_ai_0419_biggan/train/nature/n01514668_10737.JPEG
