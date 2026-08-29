@@ -1,0 +1,19 @@
+=== STAGE 1 COMPLETE (GLIDE padding) ===
+  resnet BigGan done
+  resnet Glide done
+  resnet flux done
+  resnet sd3 done
+  resnet sdxl done
+=== STAGE 2 COMPLETE (ResNet-50 sweep) ===
+  clipbaseline clean done
+  cliplora clean done
+  resnet clean done
+  npr clean done
+  ufd clean done
+  clipbaseline jpeg75 done
+  cliplora jpeg75 done
+  resnet jpeg75 done
+  npr jpeg75 done
+  ufd jpeg75 done
+=== STAGE 3 COMPLETE (JPEG robustness) ===
+ALL_REVIEW_ADDITIONS_DONE
