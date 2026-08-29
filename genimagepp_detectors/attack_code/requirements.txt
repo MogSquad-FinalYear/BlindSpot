@@ -1,0 +1,9 @@
+accelerate
+kornia
+peft
+diffusers
+timm
+torch
+torchvision
+transformers
+safetensors
