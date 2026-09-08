@@ -1,0 +1,14 @@
+# torch, torchvision, transformers, numpy, and Pillow are expected to
+# already be present (installed system-wide or in a shared environment) --
+# this venv was created with --system-site-packages to reuse them rather
+# than re-downloading multi-GB wheels. Only the packages below are installed
+# into the venv itself.
+flask
+flask-cors
+pymongo
+python-dotenv
+peft
+ftfy
+regex
+scipy
+opencv-python-headless
