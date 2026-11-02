@@ -16,6 +16,7 @@ it can be confirmed as properly attributed rather than silently flagged.
 """
 import argparse
 import os
+from pathlib import Path
 import re
 import subprocess
 import sys
@@ -62,7 +63,9 @@ def load_source(path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--paper", default="/home/student/data/paper/paper_draft.tex")
+    ap.add_argument("--paper",
+                    default=str(Path(__file__).resolve().parents[2]
+                                / "paper" / "paper_draft.tex"))
     ap.add_argument("--n", type=int, default=8, help="minimum shared n-gram length to flag")
     ap.add_argument("--sources", nargs="+", required=True)
     args = ap.parse_args()

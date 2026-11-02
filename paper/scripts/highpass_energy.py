@@ -13,7 +13,7 @@ Usage:
     python3 highpass_energy.py \
         --pairs BigGan=real_dir:fake_dir Glide=real_dir:fake_dir ... \
         --n_samples 300 --top_frac 0.2 \
-        --out /home/student/data/paper/universalfakedetect/highpass_energy/highpass_energy.csv
+        --out $REPO/paper/universalfakedetect/highpass_energy/highpass_energy.csv
 """
 import argparse
 import os

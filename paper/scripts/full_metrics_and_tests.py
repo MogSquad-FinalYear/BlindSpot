@@ -18,6 +18,7 @@ McNemar is therefore restricted to fake images throughout.
 """
 import argparse
 import csv
+from pathlib import Path
 import os
 from itertools import combinations
 
@@ -25,12 +26,19 @@ import numpy as np
 from scipy.stats import binomtest
 from sklearn.metrics import average_precision_score, roc_auc_score
 
+
+# Paths resolve against the repository by default; override with
+# BLINDSPOT_PREDICTIONS to read score files from elsewhere.
+REPO = Path(__file__).resolve().parents[2]
+PRED = Path(os.environ.get("BLINDSPOT_PREDICTIONS", REPO / "paper" / "predictions"))
+COND = PRED / "conditions"
+
 DETECTORS = {
-    "UniversalFakeDetect": "/home/student/data/UniversalFakeDetect/predictions_{g}_full.csv",
-    "NPR": "/home/student/data/NPR-DeepfakeDetection/predictions_{g}_full.csv",
-    "GenImage++ ResNet-50 baseline": "/home/student/data/genimagepp_detectors/predictions_resnet_{g}_full.csv",
-    "GenImage++ CLIP baseline": "/home/student/data/genimagepp_detectors/predictions_clipbaseline_{g}_full.csv",
-    "GenImage++ CLIP-LoRA (OMAT)": "/home/student/data/genimagepp_detectors/predictions_cliplora_{g}_full.csv",
+    "UniversalFakeDetect": str(PRED / "universalfakedetect" / "{g}.csv"),
+    "NPR": str(PRED / "npr" / "{g}.csv"),
+    "GenImage++ ResNet-50 baseline": str(PRED / "genimagepp_resnet" / "{g}.csv"),
+    "GenImage++ CLIP baseline": str(PRED / "genimagepp_clip" / "{g}.csv"),
+    "GenImage++ CLIP-LoRA (OMAT)": str(PRED / "genimagepp_cliplora" / "{g}.csv"),
 }
 GENERATORS = ["BigGan", "Glide", "flux", "sd3", "sdxl"]
 THRESHOLD = 0.5
@@ -67,7 +75,7 @@ def expected_calibration_error(y_true, y_prob, n_bins=15):
 
 def main():
     ap_ = argparse.ArgumentParser()
-    ap_.add_argument("--out_dir", default="/home/student/data/paper/comparison")
+    ap_.add_argument("--out_dir", default=str(REPO / "paper" / "comparison"))
     args = ap_.parse_args()
     os.makedirs(args.out_dir, exist_ok=True)
 

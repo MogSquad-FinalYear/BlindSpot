@@ -3,8 +3,10 @@
 the manuscript is transcribed by hand."""
 import csv
 import os
+from pathlib import Path
 
-COMP = "/home/student/data/paper/comparison"
+REPO = Path(__file__).resolve().parents[2]
+COMP = str(REPO / "paper" / "comparison")
 GENS = ["BigGan", "Glide", "flux", "sd3", "sdxl"]
 GEN_LABEL = {"BigGan": "BigGAN", "Glide": "GLIDE", "flux": "FLUX.1", "sd3": "SD3", "sdxl": "SDXL"}
 ORDER = [
