@@ -1,0 +1,275 @@
+% Response to reviewers -- ICMLDE 2026
+% Companion to the revised manuscript "Why AI-Generated Image Detectors Fail
+% on Modern Diffusion Generators: A Diagnostic Study of Cross-Architecture
+% Generalization and Failure Modes".
+% Section, table and figure numbers below refer to the revised manuscript.
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{url}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+
+\title{\vspace{-2.2em}Response to Reviewers' Comments}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3.2em}
+
+\noindent\textbf{Paper:} Why AI-Generated Image Detectors Fail on Modern
+Diffusion Generators: A Diagnostic Study of Cross-Architecture
+Generalization and Failure Modes\\
+\textbf{Authors:} Kavinesh P, Raam Prathap R V, Santhosh A S, Kasam Sai
+Venkata Siddardha, Ashish M, M Anbazhagan\\
+\textbf{Conference:} 5th International Conference on Machine Learning and
+Data Engineering (ICMLDE 2026)
+
+\vspace{6pt}
+\noindent All section, table and figure numbers below refer to the revised
+manuscript.
+
+\vspace{4pt}
+\hrule
+\vspace{10pt}
+
+We thank the three reviewers for comments that were specific enough to act
+on directly. Every point is answered below with the location of the
+corresponding change. Four of the suggestions required new experiments,
+all of which we ran: a test of the ensembling hypothesis
+(Section~4.4), per-detector reliability diagrams
+(Figure~1), a matched-compression condition that
+quantifies the PNG/JPEG confound (Section~6), and a
+comparison against published numbers for the same checkpoints
+(Section~3.5). One suggestion, adding a further
+contemporary detector, we were only able to address in part, and we say so
+plainly below rather than claiming otherwise.
+
+\section*{Reviewer 1}
+
+\noindent\textbf{1.1 Abstract is compacted to highlight the main findings.}\\[1pt]
+The abstract has been rewritten. It now opens by stating that this is a
+diagnostic study, gives the per-generator sample sizes, and reports the
+new ensembling and matched-compression results, while the preprocessing
+and compression cautions are stated as bounds on the absolute numbers
+rather than as closing remarks.
+
+\noindent\textbf{1.2 The systematic analysis of failure profiles and
+calibration under distribution shift is a major contribution.}\\[1pt]
+Thank you. We have strengthened this part rather than leaving it as it
+was: Section~4.7 now carries per-detector reliability
+diagrams (Figure~1, also requested by Reviewer 3),
+which show that for every failing cell the largest confidence bin is the
+rightmost one. That makes the point visible in a way the scalar ECE in
+Table~4 cannot: the curves fall vertically rather than
+shifting toward lower confidence.
+
+\noindent\textbf{1.3 Training data finding is based on two detectors and
+should be appropriately qualified.}\\[1pt]
+Agreed, and we have done two things. First, the closing paragraph of
+Section~4.3 now marks the claim as a hypothesis rather
+than a finding and states the specific weaknesses: it rests on one
+controlled pair, $n=5$ generators, the permutation $p$ of 0.017 is the
+floor of what the design can produce rather than an effect size, and a
+shared quirk of the SDv1.4 training subset could produce the same ordering
+twice for unrelated reasons. The abstract and conclusion were softened to
+match. Second, rather than only qualifying it, we tested a falsifiable
+prediction it makes (Section~4.4); the hypothesis survived
+that test, which is better evidence than restating it more cautiously
+would have been.
+
+\noindent\textbf{1.4 The leakage verification and McNemar tests are solid
+and should be kept as examples of evaluation practice.}\\[1pt]
+Both are retained in full (Sections~3.4
+and~4.2, Table~5). The McNemar
+machinery is also now reused for the new ensembling comparison.
+
+\noindent\textbf{1.5 Including at least one contemporary detector for
+diffusion models would widen the comparison.}\\[1pt]
+Addressed in part, and we want to be accurate about which part. The
+evaluated set already contains two detectors built for the diffusion era,
+NPR (CVPR 2024) and the OMAT-hardened CLIP-LoRA (2025), the latter
+designed and published specifically against modern diffusion and Diffusion
+Transformer outputs; Table~1 now carries a Year column
+so this span is visible rather than having to be inferred. What we could
+not do within the revision window is add a detector from a structurally
+independent family, meaning one whose detection signal is neither a CLIP
+embedding nor a pixel residual. We went further than asserting this. The
+obvious candidate is DIRE, so we obtained its released checkpoint, built a
+single-GPU harness for it, and measured the cost: DIRE scores an image by
+inverting it to a latent with DDIM and sampling back, roughly 40 diffusion
+forward passes, which ran at 171 seconds per image on the 8~GB GPU used
+throughout. That puts 100 images per class on one generator at 9.5
+GPU-hours, and the 6{,}000-per-class protocol the other five detectors run
+on, across five generators, near 2{,}800. Reporting a handful of images
+instead would have been the partial sweep we said we would not report, so
+Section~8 now carries the measurement and the harness ships with the code,
+which means the experiment is reproducible on larger hardware rather than
+merely deferred.
+Section~8 states this as a limitation and names it as
+the most valuable single addition future work could make, rather than
+leaving the reader to discover the gap.
+
+\noindent\textbf{1.6 Adding a short list of practical recommendations for
+practitioners would be useful.}\\[1pt]
+Added as Section~7: six recommendations for
+selecting and deploying a detector, each tied to a specific measurement in
+the paper, plus one recommendation addressed to benchmark authors
+regarding scriptable verification subsets.
+
+\section*{Reviewer 2}
+
+\noindent\textbf{2.1 Confounding due to JPEG vs PNG compression is an
+important note that could be highlighted earlier in the abstract.}\\[1pt]
+Moved. The compression confound is now stated in the abstract with its
+measured size, and it appears in the introduction's contribution list
+rather than only at the end of the paper. It is also no longer a
+subsection buried inside a robustness section: Section~6
+treats the robustness question and the benchmark confound together,
+because the single experiment answers both.
+
+\noindent\textbf{2.2 The analysis of resize conventions is a practical
+contribution that deserves to be highlighted.}\\[1pt]
+Promoted. It is now one of the five numbered contributions in the
+introduction, has its own top-level section
+(Section~5) rather than sitting under a discussion
+heading, and generates recommendation~4 in
+Section~7. The result that two checkpoints trained
+on identical data prefer opposite preprocessing is stated in the abstract.
+
+\noindent\textbf{2.3 The manuscript should clearly state its nature as a
+diagnostic study.}\\[1pt]
+Done in three places. The title now reads ``A Diagnostic Study of
+Cross-Architecture Generalization and Failure Modes''; the abstract's first
+sentence says the study trains nothing and proposes no new detector; and
+the introduction has a short paragraph making the same point before the
+contribution list.
+
+\noindent\textbf{2.4 Being over 8,000 words long, the manuscript is too
+long for a conference and should be shortened.}\\[1pt]
+Material carried over from the submitted version has been cut by roughly a
+fifth. Because the revision also absorbs four new experiments, three new
+tables and a new figure, all requested by the reviewers, the net length is
+close to that of the submitted manuscript rather than below it, and we
+would rather be explicit about that trade than claim a reduction the page
+count does not show. The cuts came from merging the three preprocessing
+subsections into one section with a single subsection; compressing the
+spectral-deviation analysis from roughly a page to one paragraph and
+removing its figure, since it is a negative result that did not need the
+space; folding the ``generator easiness is detector-relative'' subsection
+into Section~4.1; removing the per-image score histogram,
+whose evidence the new reliability diagrams carry more rigorously; and
+tightening the related work, methodology, limitations, ethics and
+conclusion sections throughout. No result was dropped. Should the
+committee need a further reduction, we are happy to cut the
+spectral-deviation subsection and the published-number comparison table,
+which would remove roughly another page. This response is submitted
+alongside the manuscript and is not part of the manuscript length.
+
+\noindent\textbf{2.5 Results for matched compression in real and synthetic
+cases would give a quantitative estimate of the confound effect.}\\[1pt]
+This was the most useful suggestion we received and we ran the experiment.
+Section~6 and Table~8 now report
+three conditions on one fixed FLUX.1 sample of 2{,}000 images per class,
+paired within each detector: the benchmark as shipped; a
+\emph{fakes-only} condition that re-encodes generated images at JPEG q75
+and leaves real images untouched, which removes the format asymmetry and
+nothing else; and a condition re-encoding everything. The result is
+sharper than we expected. Removing only the format asymmetry takes NPR
+from AUC 97.10 to 39.13, which is below chance, meaning the detector then
+ranks real photographs as more likely generated than the generated images.
+We note in the text why that matters for interpretation: destroyed
+evidence would drive AUC toward 50 and stop, so an inversion indicates the
+quantity NPR reads tracks relative compression level rather than
+provenance. The same manipulation costs the CLIP baseline 4.5 AUC points,
+the ResNet-50 4.3, CLIP-LoRA 12.8 and UniversalFakeDetect 1.0, against
+58.0 for NPR, so the confound inflates an artifact-based detector by an
+order of magnitude more than a semantics-based one. For comparison,
+Grommelt et al.\ report shifts above 11 points when removing JPEG and
+dimension confounds from GenImage.
+
+\noindent\textbf{2.6 The ensembling hypothesis could be tested in a small
+experiment to support the conclusion.}\\[1pt]
+Done, as a new Section~4.4 with Table~6.
+The submitted version predicted that combining detectors chosen for
+different training lineages should beat combining for architectural
+variety; the per-image scores already collected let us test that without
+retraining. Holding the GenImage++ CLIP baseline fixed and varying only
+its partner, a same-lineage partner of different architecture takes
+worst-generator fake-accuracy from 9.6\% down to 0.3\%, while a
+different-lineage partner lifts it to 62.9\%. A paired McNemar test
+separates the two combinations on all five generators
+($p<10^{-200}$ throughout). Across all pairs, excluding the nested
+CLIP/CLIP-LoRA pair, cross-lineage pairs average 52.5\% worst-generator
+accuracy against 37.3\% for same-lineage pairs. We also report two
+findings that cut against a simple ``ensemble more'' message and would
+have been easy to omit: lineage diversity is necessary but not sufficient,
+since a cross-lineage pair with a weak partner underperforms the strong
+detector alone, and every pair we construct is beaten by the single best
+detector. The conclusion is phrased accordingly, as a statement about
+where blind spots come from rather than a leaderboard claim.
+
+\section*{Reviewer 3}
+
+\noindent\textbf{3.1 Abstract should mention the sample sizes for each
+generator.}\\[1pt]
+Added: 6{,}000 real and 6{,}000 generated images for BigGAN, GLIDE, FLUX.1
+and SD3, 18{,}300 per class for SDXL, and 2{,}000 per class for the paired
+compression experiments.
+
+\noindent\textbf{3.2 Sharing the evaluation code and preprocessing
+parameters would improve the significance of the work.}\\[1pt]
+We agree, particularly given that Section~5 argues
+precisely this point about other people's releases. Appendix~A now
+itemizes what is released rather than promising a repository in general
+terms: the harness and the exact command line for each of the 25
+detector/generator cells, the per-image prediction scores every table and
+test in the paper is computed from, the preprocessing functions for the
+three resize conditions together with the normalization statistics used
+per detector, and the scripts that regenerate every results table and the
+figure from the score files. The repository is public at
+\url{https://github.com/MogSquad-FinalYear/BlindSpot}.
+
+\noindent\textbf{3.3 Calibration analysis could be extended by adding
+reliability diagrams for each detector.}\\[1pt]
+Added as Figure~1: one panel per detector, five
+generators each, plotted in the same coordinates the reported ECE
+integrates so the figure and Table~4 are consistent by
+construction. Marker area is proportional to bin occupancy, which we found
+necessary because almost all mass sits at confidence near 1 and an
+unweighted curve makes sparse middle bins look as informative as the
+extremes; bins with fewer than 25 images are omitted. The final paragraph
+of Section~4.7 reports what the diagrams add beyond the
+scalar.
+
+\noindent\textbf{3.4 Choosing the five generators should be motivated in
+terms of covering current generator families.}\\[1pt]
+Section~3.2 now opens with that motivation. The set
+covers the three denoiser and generator families that account for
+essentially all current open-weight synthesis, with the U-Net family given
+two members (GLIDE and SDXL) so it contributes a within-family contrast of
+four years rather than a single point. We also name the two families the
+study does not cover, autoregressive token-based generators and
+face-specific manipulation pipelines, the second deliberately.
+
+\noindent\textbf{3.5 Comparisons with results from GenImage and other
+benchmarks would help the reader to relate these findings.}\\[1pt]
+Added as Section~3.5 and Table~2,
+placed in the methodology so the harness is validated before new numbers
+are reported. We compare our overall accuracy against the figures the NPR
+repository publishes for the same ProGAN-4class checkpoint we evaluate:
+three of four cells agree within five points and the UniversalFakeDetect
+GLIDE cell agrees to within 0.1. We flag that those subsets are assembled
+differently from GenImage's, so this is a consistency check rather than a
+reproduction. The one same-benchmark comparison available, against Zhou et
+al.'s reported 62.66\% for their CLIP baseline on BigGAN, is the
+disagreement that Section~5 resolves, and
+Section~3.5 now forward-references it instead of
+leaving the reader to encounter the 6x gap unprepared.
+
+\end{document}
+
+\end{document}
