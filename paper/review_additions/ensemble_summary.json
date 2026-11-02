@@ -1,0 +1,40 @@
+{
+  "lineage_same__repr_same": {
+    "n": 1,
+    "mean_worst": 87.35,
+    "mean_mean": 95.56,
+    "pairs": [
+      "GI++ CLIP + GI++ LoRA"
+    ]
+  },
+  "lineage_same__repr_different": {
+    "n": 3,
+    "mean_worst": 37.26,
+    "mean_mean": 67.55,
+    "pairs": [
+      "UFD + NPR",
+      "GI++ RN50 + GI++ CLIP",
+      "GI++ RN50 + GI++ LoRA"
+    ]
+  },
+  "lineage_different__repr_same": {
+    "n": 3,
+    "mean_worst": 56.98,
+    "mean_mean": 74.6,
+    "pairs": [
+      "UFD + GI++ CLIP",
+      "UFD + GI++ LoRA",
+      "NPR + GI++ RN50"
+    ]
+  },
+  "lineage_different__repr_different": {
+    "n": 3,
+    "mean_worst": 48.1,
+    "mean_mean": 67.62,
+    "pairs": [
+      "UFD + GI++ RN50",
+      "NPR + GI++ CLIP",
+      "NPR + GI++ LoRA"
+    ]
+  }
+}

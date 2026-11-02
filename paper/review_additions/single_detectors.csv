@@ -1,0 +1,6 @@
+detector,lineage,representation,mean_fake,worst_fake,spread_fake
+UFD,ProGAN,CLIP,33.51,7.0,75.95
+NPR,ProGAN,CNN,84.18,54.64,43.09
+GI++ RN50,SDv1.4,CNN,28.52,0.42,65.67
+GI++ CLIP,SDv1.4,CLIP,66.16,9.6,79.0
+GI++ LoRA,SDv1.4,CLIP,98.7,96.48,3.38
