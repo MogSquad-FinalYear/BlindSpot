@@ -901,8 +901,15 @@ OMAT-hardened CLIP-LoRA, but a genuinely independent family would widen it
 further. A diffusion-reconstruction method such as
 DIRE~\cite{wang2023dire}, whose signal is neither a CLIP embedding nor a
 pixel residual, is the most valuable single addition future work could
-make; adding one was outside what an inference-only study on a single
-8~GB GPU could complete here. The ensembling test likewise uses one fusion
+make, and the obstacle is compute rather than availability. We obtained
+its released checkpoint and built a single-GPU harness for it, which we
+release alongside the rest of the code. DIRE scores an image by inverting
+it to a latent with DDIM and sampling back, roughly 40 diffusion forward
+passes per image, and that measured at 171 seconds per image on the 8~GB
+GPU used throughout. One hundred images per class on a single generator
+is 9.5 GPU-hours on that measurement, and matching the 6{,}000-per-class
+protocol the other five detectors run on, across five generators, would be
+near 2{,}800. We report the measurement rather than a partial sweep. The ensembling test likewise uses one fusion
 rule over pairs rather than larger sets, and its worst-generator statistic
 is a minimum over five generators and therefore sensitive to which five.
 
@@ -1219,11 +1226,18 @@ Transformer outputs; Table~\ref{tab:detectors} now carries a Year column
 so this span is visible rather than having to be inferred. What we could
 not do within the revision window is add a detector from a structurally
 independent family, meaning one whose detection signal is neither a CLIP
-embedding nor a pixel residual. The obvious candidate is a
-diffusion-reconstruction method such as DIRE, which requires running a
-diffusion model's inversion and reconstruction over every evaluation
-image; that does not fit the inference-only, single 8~GB GPU setting this
-study was built under and would have meant reporting a partial sweep.
+embedding nor a pixel residual. We went further than asserting this. The
+obvious candidate is DIRE, so we obtained its released checkpoint, built a
+single-GPU harness for it, and measured the cost: DIRE scores an image by
+inverting it to a latent with DDIM and sampling back, roughly 40 diffusion
+forward passes, which ran at 171 seconds per image on the 8~GB GPU used
+throughout. That puts 100 images per class on one generator at 9.5
+GPU-hours, and the 6{,}000-per-class protocol the other five detectors run
+on, across five generators, near 2{,}800. Reporting a handful of images
+instead would have been the partial sweep we said we would not report, so
+Section~\ref{sec:limitations} now carries the measurement and the harness ships with the code,
+which means the experiment is reproducible on larger hardware rather than
+merely deferred.
 Section~\ref{sec:limitations} states this as a limitation and names it as
 the most valuable single addition future work could make, rather than
 leaving the reader to discover the gap.

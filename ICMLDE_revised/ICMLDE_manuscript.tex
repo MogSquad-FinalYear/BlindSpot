@@ -901,8 +901,15 @@ OMAT-hardened CLIP-LoRA, but a genuinely independent family would widen it
 further. A diffusion-reconstruction method such as
 DIRE~\cite{wang2023dire}, whose signal is neither a CLIP embedding nor a
 pixel residual, is the most valuable single addition future work could
-make; adding one was outside what an inference-only study on a single
-8~GB GPU could complete here. The ensembling test likewise uses one fusion
+make, and the obstacle is compute rather than availability. We obtained
+its released checkpoint and built a single-GPU harness for it, which we
+release alongside the rest of the code. DIRE scores an image by inverting
+it to a latent with DDIM and sampling back, roughly 40 diffusion forward
+passes per image, and that measured at 171 seconds per image on the 8~GB
+GPU used throughout. One hundred images per class on a single generator
+is 9.5 GPU-hours on that measurement, and matching the 6{,}000-per-class
+protocol the other five detectors run on, across five generators, would be
+near 2{,}800. We report the measurement rather than a partial sweep. The ensembling test likewise uses one fusion
 rule over pairs rather than larger sets, and its worst-generator statistic
 is a minimum over five generators and therefore sensitive to which five.
 

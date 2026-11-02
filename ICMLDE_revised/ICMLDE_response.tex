@@ -97,11 +97,18 @@ Transformer outputs; Table~1 now carries a Year column
 so this span is visible rather than having to be inferred. What we could
 not do within the revision window is add a detector from a structurally
 independent family, meaning one whose detection signal is neither a CLIP
-embedding nor a pixel residual. The obvious candidate is a
-diffusion-reconstruction method such as DIRE, which requires running a
-diffusion model's inversion and reconstruction over every evaluation
-image; that does not fit the inference-only, single 8~GB GPU setting this
-study was built under and would have meant reporting a partial sweep.
+embedding nor a pixel residual. We went further than asserting this. The
+obvious candidate is DIRE, so we obtained its released checkpoint, built a
+single-GPU harness for it, and measured the cost: DIRE scores an image by
+inverting it to a latent with DDIM and sampling back, roughly 40 diffusion
+forward passes, which ran at 171 seconds per image on the 8~GB GPU used
+throughout. That puts 100 images per class on one generator at 9.5
+GPU-hours, and the 6{,}000-per-class protocol the other five detectors run
+on, across five generators, near 2{,}800. Reporting a handful of images
+instead would have been the partial sweep we said we would not report, so
+Section~8 now carries the measurement and the harness ships with the code,
+which means the experiment is reproducible on larger hardware rather than
+merely deferred.
 Section~8 states this as a limitation and names it as
 the most valuable single addition future work could make, rather than
 leaving the reader to discover the gap.
