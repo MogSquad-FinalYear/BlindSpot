@@ -4,3 +4,6 @@
 [submodule "UniversalFakeDetect"]
 	path = UniversalFakeDetect
 	url = https://github.com/WisconsinAIVision/UniversalFakeDetect.git
+[submodule "dire_eval/src"]
+	path = dire_eval/src
+	url = https://github.com/ZhendongWang6/DIRE.git

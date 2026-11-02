@@ -24,3 +24,8 @@ genimagepp_detectors/attack_code/__pycache__/
 # OS cruft
 .DS_Store
 Thumbs.db
+
+# DIRE checkpoints: 2.4GB, fetched by dire_eval/download_weights.sh
+dire_eval/weights/
+dire_eval/results/
+dire_eval/logs/
