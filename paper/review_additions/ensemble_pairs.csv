@@ -1,0 +1,11 @@
+pair,lineage,representation,fake_BigGAN,fake_GLIDE,fake_FLUX.1,fake_SD3,fake_SDXL,mean_fake,worst_fake,spread_fake,real_BigGAN,real_GLIDE,auc_BigGAN,auc_GLIDE
+GI++ CLIP + GI++ LoRA,same,same,87.35,99.25,97.17,98.62,95.43,95.56,87.35,11.9,97.38,97.12,97.71,99.18
+UFD + GI++ LoRA,different,same,99.38,99.57,84.17,93.57,90.45,93.43,84.17,15.4,97.97,98.07,99.82,99.16
+NPR + GI++ LoRA,different,different,99.0,99.5,99.23,98.32,78.04,94.82,78.04,21.46,91.58,92.23,99.14,99.68
+NPR + GI++ CLIP,different,different,71.68,94.82,98.37,95.07,62.89,84.56,62.89,35.48,92.67,93.08,91.04,98.41
+GI++ RN50 + GI++ LoRA,same,different,80.68,95.98,79.17,93.73,58.28,81.57,58.28,37.7,98.72,98.48,98.63,98.62
+UFD + NPR,same,different,90.07,93.47,95.27,83.25,53.18,83.05,53.18,42.09,91.93,92.6,98.32,96.93
+NPR + GI++ RN50,different,same,63.65,90.33,96.1,90.95,47.03,77.61,47.03,49.07,94.25,94.12,90.42,95.26
+UFD + GI++ CLIP,different,same,39.73,54.68,44.75,59.83,64.77,52.75,39.73,25.04,99.3,99.13,96.59,95.01
+UFD + GI++ RN50,different,different,3.37,4.32,41.85,53.18,14.72,23.49,3.37,49.82,99.5,99.32,97.24,85.51
+GI++ RN50 + GI++ CLIP,same,different,0.33,17.78,65.6,77.23,29.14,38.02,0.33,76.9,99.15,98.98,67.35,93.3

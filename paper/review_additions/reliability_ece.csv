@@ -1,0 +1,26 @@
+detector,generator,ece
+UniversalFakeDetect,BigGAN,0.0418
+UniversalFakeDetect,GLIDE,0.3004
+UniversalFakeDetect,FLUX.1,0.4396
+UniversalFakeDetect,SD3,0.4058
+UniversalFakeDetect,SDXL,0.2455
+NPR,BigGAN,0.1258
+NPR,GLIDE,0.0837
+NPR,FLUX.1,0.0607
+NPR,SD3,0.0908
+NPR,SDXL,0.2682
+GenImage++ ResNet-50,BigGAN,0.5032
+GenImage++ ResNet-50,GLIDE,0.4694
+GenImage++ ResNet-50,FLUX.1,0.2125
+GenImage++ ResNet-50,SD3,0.1535
+GenImage++ ResNet-50,SDXL,0.4156
+GenImage++ CLIP,BigGAN,0.4333
+GenImage++ CLIP,GLIDE,0.1209
+GenImage++ CLIP,FLUX.1,0.0339
+GenImage++ CLIP,SD3,0.0309
+GenImage++ CLIP,SDXL,0.0762
+GenImage++ CLIP-LoRA,BigGAN,0.0167
+GenImage++ CLIP-LoRA,GLIDE,0.0155
+GenImage++ CLIP-LoRA,FLUX.1,0.0206
+GenImage++ CLIP-LoRA,SD3,0.0152
+GenImage++ CLIP-LoRA,SDXL,0.0121

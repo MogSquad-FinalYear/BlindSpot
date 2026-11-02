@@ -1,0 +1,6 @@
+generator,n_fake,crosslineage_correct_only,samelineage_correct_only,p_value
+BigGAN,6000,4284,3,0
+GLIDE,6000,4654,32,0
+FLUX.1,6000,2006,40,0
+SD3,6000,1241,171,1.5e-200
+SDXL,18300,7766,1590,0
