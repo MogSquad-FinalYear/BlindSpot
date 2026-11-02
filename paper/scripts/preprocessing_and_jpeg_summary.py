@@ -15,13 +15,17 @@ import os
 import numpy as np
 from sklearn.metrics import average_precision_score, roc_auc_score
 
-GP = "/home/student/data/genimagepp_detectors/"
-NPRD = "/home/student/data/NPR-DeepfakeDetection/"
-UFD = "/home/student/data/UniversalFakeDetect/"
+from pathlib import Path
+
+# Paths resolve against the repository by default; override with
+# BLINDSPOT_PREDICTIONS to read score files from elsewhere.
+REPO = Path(__file__).resolve().parents[2]
+PRED = Path(os.environ.get("BLINDSPOT_PREDICTIONS", REPO / "paper" / "predictions"))
+COND = PRED / "conditions"
 
 
 def stats(path):
-    if not os.path.exists(path):
+    if not Path(path).exists():
         return None
     yt, yp = [], []
     with open(path) as f:
@@ -56,35 +60,35 @@ def block(title, rows):
 
 def main():
     block("(a) PREPROCESSING: padding vs upsampling, BigGAN (128x128 native)", [
-        ("CLIP baseline  upsample", GP + "predictions_clipbaseline_BigGan_full.csv"),
-        ("CLIP baseline  pad",      GP + "predictions_clipbaseline_BigGan_pad.csv"),
-        ("CLIP-LoRA      upsample", GP + "predictions_cliplora_BigGan_full.csv"),
-        ("CLIP-LoRA      pad",      GP + "predictions_cliplora_BigGan_pad.csv"),
+        ("CLIP baseline  upsample", PRED / "genimagepp_clip" / "BigGan.csv"),
+        ("CLIP baseline  pad",      COND / "clipbaseline_BigGan_pad.csv"),
+        ("CLIP-LoRA      upsample", PRED / "genimagepp_cliplora" / "BigGan.csv"),
+        ("CLIP-LoRA      pad",      COND / "cliplora_BigGan_pad.csv"),
     ])
 
     block("(a) PREPROCESSING: padding vs upsampling, GLIDE (256x256 native)", [
-        ("CLIP baseline  upsample", GP + "predictions_clipbaseline_Glide_full.csv"),
-        ("CLIP baseline  pad",      GP + "predictions_clipbaseline_Glide_pad.csv"),
-        ("CLIP-LoRA      upsample", GP + "predictions_cliplora_Glide_full.csv"),
-        ("CLIP-LoRA      pad",      GP + "predictions_cliplora_Glide_pad.csv"),
+        ("CLIP baseline  upsample", PRED / "genimagepp_clip" / "Glide.csv"),
+        ("CLIP baseline  pad",      COND / "clipbaseline_Glide_pad.csv"),
+        ("CLIP-LoRA      upsample", PRED / "genimagepp_cliplora" / "Glide.csv"),
+        ("CLIP-LoRA      pad",      COND / "cliplora_Glide_pad.csv"),
     ])
 
     N = 2000
     block(f"(b) JPEG q=75 robustness on FLUX.1 ({N}/class, paired clean vs jpeg)", [
-        ("UniversalFakeDetect clean", UFD + f"predictions_flux_clean{N}.csv"),
-        ("UniversalFakeDetect jpeg75", UFD + f"predictions_flux_jpeg75{N}.csv"),
-        ("NPR                 clean", NPRD + f"predictions_flux_clean{N}.csv"),
-        ("NPR                 jpeg75", NPRD + f"predictions_flux_jpeg75{N}.csv"),
-        ("ResNet-50           clean", GP + f"predictions_resnet_flux_clean{N}.csv"),
-        ("ResNet-50           jpeg75", GP + f"predictions_resnet_flux_jpeg75{N}.csv"),
-        ("CLIP baseline       clean", GP + f"predictions_clipbaseline_flux_clean{N}.csv"),
-        ("CLIP baseline       jpeg75", GP + f"predictions_clipbaseline_flux_jpeg75{N}.csv"),
-        ("CLIP-LoRA           clean", GP + f"predictions_cliplora_flux_clean{N}.csv"),
-        ("CLIP-LoRA           jpeg75", GP + f"predictions_cliplora_flux_jpeg75{N}.csv"),
+        ("UniversalFakeDetect clean", COND / f"ufd_flux_clean{N}.csv"),
+        ("UniversalFakeDetect jpeg75", COND / f"ufd_flux_jpeg75{N}.csv"),
+        ("NPR                 clean", COND / f"npr_flux_clean{N}.csv"),
+        ("NPR                 jpeg75", COND / f"npr_flux_jpeg75{N}.csv"),
+        ("ResNet-50           clean", COND / f"resnet_flux_clean{N}.csv"),
+        ("ResNet-50           jpeg75", COND / f"resnet_flux_jpeg75{N}.csv"),
+        ("CLIP baseline       clean", COND / f"clipbaseline_flux_clean{N}.csv"),
+        ("CLIP baseline       jpeg75", COND / f"clipbaseline_flux_jpeg75{N}.csv"),
+        ("CLIP-LoRA           clean", COND / f"cliplora_flux_clean{N}.csv"),
+        ("CLIP-LoRA           jpeg75", COND / f"cliplora_flux_jpeg75{N}.csv"),
     ])
 
     block("ResNet-50 fifth detector, full sweep", [
-        (f"ResNet-50 {g}", GP + f"predictions_resnet_{g}_full.csv")
+        (f"ResNet-50 {g}", PRED / "genimagepp_resnet" / f"{g}.csv")
         for g in ["BigGan", "Glide", "flux", "sd3", "sdxl"]
     ])
 

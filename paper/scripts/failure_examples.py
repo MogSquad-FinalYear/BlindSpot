@@ -12,7 +12,7 @@ borderline uncertainty.
 Usage:
     python3 failure_examples.py \
         --csv predictions_sd3_full.csv --label sd3 --n 6 \
-        --out_dir /home/student/data/paper/universalfakedetect/failure_examples
+        --out_dir $REPO/paper/universalfakedetect/failure_examples
 """
 import argparse
 import csv

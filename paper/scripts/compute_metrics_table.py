@@ -10,7 +10,7 @@ Generic across detectors: point it at any set of label=csv pairs.
 Usage:
     python3 compute_metrics_table.py \
         --csv BigGan=.../predictions_BigGan_full.csv Glide=... flux=... sd3=... sdxl=... \
-        --out_dir /home/student/data/paper/universalfakedetect \
+        --out_dir $REPO/paper/universalfakedetect \
         --detector_name "UniversalFakeDetect (CLIP ViT-L/14 linear probe)"
 """
 import argparse
