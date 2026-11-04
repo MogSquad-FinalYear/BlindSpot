@@ -33,7 +33,7 @@ Failure Modes}
 \author[a]{Santhosh A S}
 \author[a]{Kasam Sai Venkata Siddardha}
 \author[a]{Ashish M}
-\author[a]{M Anbazhagan\corref{cor1}}
+\author[a]{Anbazhagan Mahadevan\corref{cor1}}
 
 \address[a]{Department of Computer Science and Engineering, Amrita School of Computing, Coimbatore 641112, Amrita Vishwa Vidyapeetham, India}
 
@@ -42,26 +42,25 @@ This is a diagnostic study: it trains nothing and proposes no detector,
 and instead measures how five pretrained, publicly released AI-generated
 image detectors behave on five generators spanning three architecture
 families, with every generator verified absent from every detector's
-training data. We use 6{,}000 real and 6{,}000 generated images for
-BigGAN, GLIDE, FLUX.1 and SD3, 18{,}300 per class for SDXL, and paired
-subsets of 2{,}000 per class for the compression experiments. Detectors
-disagree about what is hard: one fails worst on FLUX.1 (7.0\%
-fake-accuracy), another on SDXL (54.6\%), two others on BigGAN (0.4\% and
-9.6\%), and paired McNemar tests on identical images confirm the gaps with
-one non-significant exception between two same-lineage detectors. Two
-detectors trained on identical data but different architectures produce an
-\emph{identical} difficulty ordering across all five generators
-($\rho=+1.000$, exact $p=0.017$) while differing 37.6 points in mean
-accuracy. Testing the ensembling prediction this implies, pairing a
-detector with a different-lineage partner lifts worst-generator accuracy
-from 9.6\% to 62.9\%, where pairing it with a same-lineage partner of
-different architecture lowers it to 0.3\%. Calibration error rises with
-failure severity rather than falling, reaching 0.503 where fake-accuracy
-is 0.4\%, so these models stay confident and become wrong outside their
-training distribution. Two measurement hazards bound every absolute number
-here: a resize convention rarely specified in released code moves the same
+training data. Evaluation uses 6{,}000 real and 6{,}000 generated images
+per generator, 18{,}300 per class for SDXL, and paired subsets of 2{,}000
+for the compression experiments. Detectors disagree about what is hard:
+one fails worst on FLUX.1 (7.0\% fake-accuracy), another on SDXL (54.6\%),
+two others on BigGAN (0.4\% and 9.6\%), and paired McNemar tests on
+identical images confirm the gaps with one non-significant exception
+between two same-lineage detectors. Two detectors trained on identical
+data but different architectures produce an \emph{identical} difficulty
+ordering across all five generators ($\rho=+1.000$, exact $p=0.017$) while
+differing 37.6 points in mean accuracy. Testing the ensembling prediction
+this suggests, a different-lineage partner lifts worst-generator accuracy
+from 9.6\% to 62.9\% where a same-lineage partner of different
+architecture lowers it to 0.3\%. Calibration error rises with failure
+severity rather than falling, reaching 0.503 where fake-accuracy is 0.4\%,
+so these models stay confident and become wrong outside their training
+distribution. Two measurement hazards bound every absolute number here. A
+resize convention rarely specified in released code moves the same
 checkpoint by over 15 points, in opposite directions for two checkpoints
-trained on identical data; and because these benchmarks pair PNG generated
+trained on identical data. And because these benchmarks pair PNG generated
 images against JPEG reals, re-encoding only the generated side at JPEG
 quality 75 takes the best clean-data FLUX.1 detector from AUC 97.1 to
 39.1, below chance, while the other four lose between 1 and 13 points.
@@ -70,7 +69,7 @@ quality 75 takes the best clean-data FLUX.1 detector from AUC 97.1 to
 \begin{keyword}
 AI-generated image detection \sep synthetic image forensics \sep cross-generator generalization \sep diffusion models \sep adversarial training \sep calibration \sep reproducibility
 \end{keyword}
-\cortext[cor1]{Corresponding author: M Anbazhagan}
+\cortext[cor1]{Corresponding author: Anbazhagan Mahadevan}
 \end{frontmatter}
 
 \email{m\_anbazhagan@cb.amrita.edu}
@@ -108,18 +107,15 @@ against primary documentation rather than inferred from the accuracy
 pattern such a check is meant to validate, and every gap backed by a
 paired McNemar test (Section~\ref{sec:significance}). We decompose the
 disagreement using two detectors trained on identical data but different
-architectures, whose difficulty orderings match exactly while their
-accuracy levels differ by 37.6 points (Section~\ref{sec:finding-shape}),
-then test the operational prediction that follows, that detectors should
-be combined for training-lineage diversity rather than architectural
-diversity (Section~\ref{sec:ensemble}). We give a calibration account of
-the failure mode, with per-detector reliability diagrams
+architectures (Section~\ref{sec:finding-shape}), then test the
+operational prediction that follows, that detectors should be combined for
+training-lineage diversity rather than architectural variety
+(Section~\ref{sec:ensemble}). We give a calibration account of the failure
+mode, with per-detector reliability diagrams
 (Section~\ref{sec:confidence}). Finally we report two measurement hazards
-bounding how any of these numbers should be read: a resize convention that
-moves the same checkpoint by more than 15 points
-(Section~\ref{sec:discussion}), and a compression asymmetry built into the
-benchmarks, whose size we estimate by re-encoding the generated side to
-match the real side (Section~\ref{sec:compression}).
+that bound how any accuracy on these benchmarks should be read, a resize
+convention (Section~\ref{sec:discussion}) and a compression asymmetry
+built into the benchmarks themselves (Section~\ref{sec:compression}).
 
 On terminology: ``deepfake'' originally named the narrower problem of face
 swapping and reenactment, where the manipulated region is a face inside an
@@ -258,12 +254,12 @@ We use 6{,}000 real and 6{,}000 fake images for BigGAN, GLIDE, FLUX.1 and
 SD3, and the full 18{,}300--18{,}301 per class for SDXL, giving a
 worst-case 95\% confidence-interval half-width of $\pm$1.26 points at
 $n=6{,}000$ against $\pm$0.72 at $n=18{,}300$; every gap we report is tens
-of points. One caveat on how these sizes should be read: the dataset
-loader we inherited silently falls back to 100 images per class whenever
-the requested size exceeds either class pool, so a flag meaning ``use all
-available data'' had the opposite effect. Every number here comes from
-full-data reruns after that was found; we mention it because the failure
-was silent and produced plausible-looking results.
+of points. One caveat: the dataset loader we inherited silently falls back
+to 100 images per class whenever the requested size exceeds either class
+pool, so a flag meaning ``use all available data'' had the opposite
+effect. Every number here comes from full-data reruns after that was
+found, and we mention it because the failure was silent and produced
+plausible-looking results.
 
 \subsection{Evaluation protocol}
 \label{sec:methods-protocol}
@@ -306,14 +302,13 @@ detectors' training data.
 \subsection{Relation to published numbers on these benchmarks}
 \label{sec:methods-published}
 
-Before reporting new numbers we check the harness against numbers the
-detectors' own authors published. Table~\ref{tab:published} compares our
-overall accuracy against the figures the NPR repository reports for the
-same ProGAN-4class checkpoint we evaluate, on the AIGCDetectBenchmark
-assembly of BigGAN and GLIDE subsets. Those subsets are assembled
-differently from GenImage's, so this is a consistency check rather than a
-reproduction, but three of the four cells land within five points and the
-UniversalFakeDetect GLIDE cell agrees to within 0.1.
+Before reporting new numbers we check the harness against figures the
+detectors' own authors published (Table~\ref{tab:published}). The NPR
+repository reports accuracies for the same ProGAN-4class checkpoint we
+evaluate, on the AIGCDetectBenchmark assembly of BigGAN and GLIDE subsets.
+Those are assembled differently from GenImage's, so this is a consistency
+check rather than a reproduction; three of the four cells land within five
+points and the UniversalFakeDetect GLIDE cell within 0.1.
 
 \begin{table}[h]
 \caption{Our overall accuracy against published figures for the same
@@ -336,13 +331,12 @@ GenImage++ CLIP~\cite{zhou2025omat} & BigGAN & 62.7 & 61.7 & $-1.0$ \\
 \end{tabular*}
 \end{table}
 
-The last row is the one case where a published number and ours describe
-the same benchmark subset, and it did not agree at first: our initial
-measurement was 53.0\% overall, and a fake-only reading of it 9.6\%,
-roughly six times below the published figure. Resolving that took a
-metric-definition correction plus a preprocessing change, and because the
-second moves any checkpoint on this benchmark we treat it as a result in
-its own right (Section~\ref{sec:discussion}).
+The last row is the one same-benchmark comparison, and it did not agree at
+first: a fake-only reading of our measurement was 9.6\%, roughly six times
+below the published figure. Resolving that took a metric-definition
+correction plus a preprocessing change, and because the second moves any
+checkpoint on this benchmark we treat it as a result in its own right
+(Section~\ref{sec:discussion}).
 
 \section{Results}
 \label{sec:results}
@@ -435,14 +429,13 @@ score 82.95\% and 84.12\%, and it would be easy to call NPR better. The
 paired test disagrees: 835 images go one way and 905 the other,
 $p=0.098$. Of 50 pairwise tests (ten detector pairs across five
 generators) this is the only one failing significance at $\alpha=0.05$;
-the next weakest reaches $p=9.6\times10^{-3}$ and would also fail under
-Bonferroni correction ($\alpha/50\approx0.001$), but every result our
-substantive claims rest on clears $p<10^{-9}$ by a wide margin, so
-family-wise correction changes no conclusion. The 1.2-point BigGAN gap
-should not be interpreted, which strengthens Section~\ref{sec:finding1}
-rather than weakening it: BigGAN is where the two ProGAN-trained detectors
-behave alike, as a shared training lineage predicts, while every
-cross-lineage comparison separates sharply.
+the next weakest, at $p=9.6\times10^{-3}$, would also fail under Bonferroni
+correction ($\alpha/50\approx0.001$), but every result our substantive
+claims rest on clears $p<10^{-9}$, so family-wise correction changes no
+conclusion. The 1.2-point BigGAN gap should not be interpreted, which
+strengthens Section~\ref{sec:finding1} rather than weakening it: BigGAN is
+where the two ProGAN-trained detectors behave alike, as a shared lineage
+predicts, while every cross-lineage comparison separates sharply.
 
 \begin{table}[h]
 \caption{Paired McNemar tests on identical fake-image sets. $n_{01}$ counts
@@ -464,8 +457,8 @@ SDXL & CLIP vs.\ CLIP-LoRA & 74 & 4136 & $<10^{-300}$ \\
 \end{tabular*}
 \end{table}
 
-\subsection{Training data sets the shape of the failure profile;
-architecture sets its level}
+\subsection{Failure-profile shape tracks training data, its level
+tracks architecture}
 \label{sec:finding-shape}
 
 The two GenImage++ non-adversarial baselines separate those factors: they
@@ -484,10 +477,12 @@ fake-accuracy is 28.5\% for the ResNet-50 against 66.2\% for the CLIP
 probe, a 37.6-point gap on identical training data and identical
 evaluation images.
 
-Read together, these suggest that the training distribution fixes the
+Read together, these two observations point to a decomposition: the
 \emph{shape} of a failure profile, which generators a detector struggles
-on relative to others, and the representation fixes the \emph{level}.
-Shared training data alone is not sufficient: UniversalFakeDetect and NPR
+on relative to others, co-varies with the training distribution, while its
+\emph{level} co-varies with the representation. We state this as
+association rather than cause, since nothing here manipulates either
+factor. Shared training data alone does not produce a shared profile: UniversalFakeDetect and NPR
 are both ProGAN-trained yet anti-correlate ($\rho=-0.800$), differing in
 training subset (20 LSUN categories against 4) and in input
 representation, one a semantic embedding and the other a high-pass pixel
@@ -506,12 +501,11 @@ training study outside our scope. Testing a prediction it makes is not.
 architecture}
 \label{sec:ensemble}
 
-If training data fixes which generators a detector is blind to, and
-architecture only fixes how well it sees the rest, then combining two
-detectors that share a training lineage should leave the shared blind spot
-in place however different their architectures are, while combining
-detectors from different lineages should cover it. The per-image scores
-already collected test that without retraining. We fuse pairs by averaging
+That decomposition makes a falsifiable prediction. If blind spots follow
+training data, combining two detectors of the same lineage should leave
+the shared blind spot in place however different their architectures are,
+while combining across lineages should cover it. The per-image scores
+already collected test it without retraining. We fuse pairs by averaging
 predicted probabilities at the same fixed 0.5 threshold used everywhere
 else, and report worst-generator fake-accuracy, since a blind spot is
 defined by the generator a combination handles least well. Real-image sets
@@ -559,6 +553,16 @@ independent detector, the six cross-lineage pairs average 52.5\%
 worst-generator accuracy against 37.3\% for the three same-lineage
 pairs.
 
+One caution on what ``lineage'' is doing here. Detectors that differ in
+training data differ in other ways too: NPR and the GenImage++ CLIP
+baseline differ in architecture, input representation and training recipe
+as well as in data, so the contrast is between detector pedigrees rather
+than between training sets with everything else held fixed. The one
+genuinely controlled pair available, the two GenImage++ baselines, varies
+architecture alone, and that is the pair whose shared blind spot the
+fusion fails to cover. The result is consistent with lineage being the
+operative variable without isolating it.
+
 Two qualifications keep this from being a recommendation to ensemble.
 Lineage diversity is necessary but not sufficient: NPR paired with the
 cross-lineage but very weak ResNet-50 lands at 47.0\%, below NPR alone.
@@ -592,31 +596,25 @@ zero-padding border rather than by the change of interpolation.
 \subsection{Spectral deviation does not track detectability}
 \label{sec:spectral}
 
-A natural guess is that a generator's spectral signature predicts how
-detectable it is. Measuring each generator's high-frequency deviation from
-real-photo statistics (mean log-magnitude FFT energy in the outer 20\% of
-the frequency radius, 300-image samples), SD3 is the only generator whose
-fakes carry \emph{more} high-frequency energy than real photos
-($+15.1\%$); BigGAN ($-283.5\%$), GLIDE ($-234.3\%$), SDXL ($-52.4\%$) and
-FLUX.1 ($-31.6\%$) all under-produce it. That ordering matches the
-ordering by detectability under no detector in Table~\ref{tab:results}:
+A generator's spectral signature does not predict how detectable it is. On
+high-frequency deviation from real-photo statistics (mean log-magnitude
+FFT energy in the outer 20\% of the frequency radius, 300-image samples),
+SD3 alone carries \emph{more} high-frequency energy than real photos
+($+15.1\%$), against BigGAN ($-283.5\%$), GLIDE ($-234.3\%$), SDXL
+($-52.4\%$) and FLUX.1 ($-31.6\%$). That ordering matches the
+detectability ordering in Table~\ref{tab:results} under no detector:
 BigGAN and GLIDE deviate most yet sit at opposite ends of several
-rankings, and SD3's uniquely positive deviation makes it the outlier in no
-accuracy column. We run no correlation between the two, because with five
-generators any coefficient would be dominated by which points happen to be
-included, but spectral signature and detectability are clearly separate
-axes.
+rankings. With five generators we fit no correlation, but the two are
+plainly separate axes.
 
 \subsection{Detectors fail by being confident, not uncertain}
 \label{sec:confidence}
 
-Inspecting per-image scores shows where the errors sit. For
-UniversalFakeDetect on FLUX.1 and SD3, where it fails hardest, the
-fake-image distribution does not sit near the 0.5 boundary; it collapses
-into the 0--0.1 bin, the region occupied by correctly classified real
-images, while on SDXL and GLIDE it retains visible mass near 1.0. The
-failure mode is not borderline uncertainty but confident
-misclassification.
+The per-image scores show where the errors sit. For UniversalFakeDetect on
+FLUX.1 and SD3, the fake-image distribution does not sit near the 0.5
+boundary; it collapses into the 0--0.1 bin, the region occupied by
+correctly classified real images. The failure mode is not borderline
+uncertainty but confident misclassification.
 
 % The per-image score histogram below was cut for length in this revision
 % (Reviewer 2.4); the reliability diagrams in Fig.~\ref{fig:reliability}
@@ -673,14 +671,13 @@ depend on low confidence tracking low reliability.
 \section{A preprocessing-driven reproducibility hazard}
 \label{sec:discussion}
 
-The disagreement left open in Section~\ref{sec:methods-published} is worth
-following, because resolving it turns up a sensitivity that applies to any
-cross-paper accuracy comparison in this literature. We first ruled out an
-implementation bug: reimplementing the source repository's released
-\texttt{kornia}-based preprocessing and running both versions over the
-same sixteen images through the same checkpoint gave near-identical
-scores, pointing at the preprocessing \emph{choice} rather than a coding
-error.
+Resolving the disagreement left open in Section~\ref{sec:methods-published}
+turns up a sensitivity that applies to any cross-paper accuracy comparison
+in this literature. An implementation bug was ruled out first:
+reimplementing the source repository's released \texttt{kornia}-based
+preprocessing and running both versions over the same sixteen images
+through the same checkpoint gave near-identical scores, pointing at the
+preprocessing \emph{choice} rather than a coding error.
 
 GenImage's BigGAN subset ships fakes at 128$\times$128, unlike every other
 generator in the benchmark (GLIDE ships at 256$\times$256), which is the
@@ -763,11 +760,10 @@ The CLIP baseline moves the opposite way on the same axis: under
 nearest-neighbour upsampling its AUC rises to 90.72 from 67.97, so for a
 detector never fine-tuned against a fixed pipeline, smooth interpolation
 of a 128$\times$128 output is itself destroying signal. Two checkpoints
-trained on identical data prefer opposite preprocessing, so no
-preprocessing choice is neutral across detectors and a benchmark fixing
-one implicitly favours some. A reader comparing published numbers should
-treat a resize or crop mismatch as a checkable explanation for an
-unexplained gap before concluding either is wrong.
+trained on identical data therefore prefer opposite preprocessing, which
+makes a resize or crop mismatch a checkable explanation for an unexplained
+gap between published numbers, and makes any benchmark that fixes one
+convention a benchmark that quietly favours some detectors.
 
 \section{Compression: a robustness failure and a benchmark confound}
 \label{sec:compression}
@@ -785,14 +781,13 @@ them.
 
 One experiment answers both questions, run in three conditions on a fixed
 FLUX.1 sample of 2{,}000 images per class so that every condition is
-paired within a detector (Table~\ref{tab:compression}). \emph{Clean} is
-the benchmark as shipped. \emph{Fakes-only} re-encodes the generated
-images at JPEG quality 75 and leaves the reals untouched, removing the
-format asymmetry and nothing else, so the clean-to-fakes-only drop
-estimates how much apparent skill that asymmetry was supplying.
-\emph{Both} re-encodes every image, the deployment-style robustness check
-and the closest available approximation to a compression-balanced
-benchmark.
+paired within a detector (Table~\ref{tab:compression}). The one that
+isolates the confound is \emph{fakes-only}, which re-encodes the generated
+images at JPEG quality 75 and leaves the reals untouched: it removes the
+format asymmetry and nothing else, so the drop from \emph{clean} measures
+what that asymmetry was supplying. \emph{Both} re-encodes every image, the
+deployment-style check and the closest available approximation to a
+compression-balanced benchmark.
 
 \begin{table}[h]
 \caption{FLUX.1, 2{,}000 images per class, the same sample in every
@@ -820,18 +815,20 @@ NPR is the headline in both readings. It is the strongest detector on
 clean FLUX.1 by a wide margin (98.0\% fake-accuracy, AUC 97.1), and
 compressing only the generated side takes its AUC to 39.13, not merely
 chance but below it: the detector then ranks real photographs as more
-likely generated than the generated images themselves. That matters for
-interpretation. If JPEG re-encoding simply destroyed genuine generative
-traces, AUC would fall toward 50 and stop, because destroyed evidence is
-absent evidence. An inversion means the quantity NPR reads tracks relative
-compression level rather than provenance, which fits its mechanism: it
-reads up-sampling artifacts in neighbouring-pixel relationships, and JPEG
-quantisation attacks exactly the high-frequency content those live in, so
-once the generated side is the more heavily compressed side the sign of
-the evidence flips. The clean 98.0\% should not be read as a pure
-measurement of generative-artifact detection, though we cannot decompose
-it into a provenance part and a compression part, since both explanations
-predict a collapse.
+likely generated than the generated images themselves. The inversion is what
+settles the interpretation. Destroying evidence drives AUC toward 50 and
+stops there, so a detector reading provenance alone cannot invert; a
+detector reading which side carries more high-frequency structure must
+invert, once the generated side becomes the more heavily compressed one.
+That is NPR's mechanism: it reads up-sampling artifacts in
+neighbouring-pixel relationships, and JPEG quantisation attacks exactly
+the content those live in. The direction of NPR's evidence therefore
+follows the compression ordering of the two classes rather than their
+provenance, and that much is measured here rather than inferred. What the
+experiment does not settle is a quantity. Because re-encoding removes
+genuine generative traces at the same time, it bounds neither the share of
+the clean 98.0\% that the format asymmetry supplied nor what would survive
+on a compression-balanced benchmark.
 
 The other four detectors set the scale. Removing the format asymmetry
 costs the CLIP baseline 4.5 AUC points, the ResNet-50 4.3, CLIP-LoRA 12.8
@@ -846,17 +843,14 @@ of 50.6, let alone 39.1: the detector a clean-data leaderboard recommends
 is the one that fails most completely on data that has passed through any
 normal image pipeline.
 
-Two things limit the damage to the rest of this paper. All five detectors
-saw exactly the same images, so the cross-detector comparisons and every
-paired test in Section~\ref{sec:significance} hold even if absolute levels
-are inflated by a shared bias; and the confound is a property of the
-real/fake pairing, so it cannot explain Section~\ref{sec:finding-shape},
-where two detectors on identical images produce identical difficulty
-orderings at very different levels. Absolute accuracies should nonetheless
-be treated as upper bounds, and repeating this study on a
-compression-balanced benchmark, such as the debiased GenImage variant
-released with~\cite{grommelt2024jpeg}, is the most important single
-follow-up.
+The confound is shared and symmetric, so it leaves the comparative results
+intact: every detector saw the same images, and the bias is a property of
+the real/fake pairing rather than of any detector, so it cannot produce
+the matched difficulty orderings of Section~\ref{sec:finding-shape}.
+Absolute accuracies should nonetheless be read as upper bounds, and
+repeating this study on a compression-balanced benchmark, such as the
+debiased GenImage variant released with~\cite{grommelt2024jpeg}, is the
+most important single follow-up.
 
 
 \section{Recommendations for practitioners}
@@ -866,17 +860,14 @@ follow-up.
 \item Choose a detector against the generator families you expect, not
 against a headline average: every generator here spans at least 84
 accuracy points across five detectors.
-\item If you combine detectors, combine across training lineages. Pairing
-within a lineage left the shared blind spot in place in every case we
-measured, and in one case deepened it from 9.6\% to 0.3\%. Check first
-that one strong detector is not better than any pair you can build.
+\item If you combine detectors, combine across training lineages, and
+check first that one strong detector is not better than any pair you can
+build (Section~\ref{sec:ensemble}).
 \item Treat confidence as uninformative unless you have calibrated the
 detector on data resembling your deployment, since calibration error here
 rises with error rate.
 \item Pin and publish the preprocessing: resize, crop, interpolation
-kernel and normalization statistics, alongside any accuracy you report. A
-resize convention alone moved one checkpoint by more than 15 points, and
-moved two checkpoints trained on identical data in opposite directions.
+kernel and normalization statistics, alongside any accuracy you report.
 \item Evaluate on re-encoded images before deployment. A detector reading
 high-frequency artifacts can lose all discriminative power under ordinary
 JPEG, and rank-based metrics will show this before accuracy does.
@@ -895,10 +886,8 @@ metric definition behind the headline table.
 
 Detector diversity is narrower than ``five detectors'' suggests: three
 share a CLIP backbone family, so findings holding across all five are on
-firmer ground than those from the CLIP family alone. The set spans 2023 to
-2025 and includes two detectors built for the diffusion era, NPR and the
-OMAT-hardened CLIP-LoRA, but a genuinely independent family would widen it
-further. A diffusion-reconstruction method such as
+firmer ground than those from that family alone. A genuinely independent
+family would widen it further. A diffusion-reconstruction method such as
 DIRE~\cite{wang2023dire}, whose signal is neither a CLIP embedding nor a
 pixel residual, is the most valuable single addition future work could
 make, and the obstacle is compute rather than availability. We obtained
@@ -957,38 +946,31 @@ of people, and face manipulation is out of scope entirely.
 \section{Conclusion}
 \label{sec:conclusion}
 
-Five pretrained detectors, evaluated on five generators with leakage
-verified absent, disagree about which generator is hardest, and the
-disagreement is statistically real rather than sampling noise. What
-predicts a detector's weak spot is its training distribution, not the
-generator's recency: BigGAN, the oldest generator here, is the hardest
-case for two detectors and among the easiest for two others.
+Three things follow from the measurements above, and each changes what a
+published accuracy number is worth.
 
-Two detectors trained on the same data but different architectures rank
-the five generators identically while differing 37.6 points in mean
-accuracy, which suggests training distribution fixes the shape of a
-failure profile and the representation its level. That is a two-detector
-observation, so we tested the prediction it makes rather than resting on
-it, and it held: a different-lineage partner lifted worst-generator
-accuracy from 9.6\% to 62.9\%, while a same-lineage partner of different
-architecture pushed the same quantity down to 0.3\%, a separation
-significant on every generator. Blind spots travel with training data, and
-a different backbone does not move them. What makes those gaps
-consequential is that calibration error rises alongside error rate rather
-than falling, so a detector leaving its training distribution stays
-confident and becomes wrong instead of signalling its own unreliability.
+A detector's weak spot is predicted by its training distribution, not by
+the generator's recency. That makes a single reported number close to
+uninformative about a deployment on a different generator family, and it
+makes the shape of a detector's failure profile the quantity worth
+reporting. The ensembling test in Section~\ref{sec:ensemble} is the
+practical consequence: combining for architectural variety within one
+training lineage left the shared blind spot in place and in one case
+deepened it, while combining across lineages covered it.
 
-Two measurement findings temper how any of these numbers should be used. A
-resize convention rarely specified in released code moves the same
-checkpoint by more than 15 points, in opposite directions for two
-checkpoints trained on identical data. And because these benchmarks pair
-PNG generated images against JPEG reals, re-encoding only the generated
-side takes the best clean-data FLUX.1 detector from AUC 97.1 to 39.1,
-below chance, while the other four lose between 1 and 13 points; the
-detector a clean-data leaderboard recommends is the one least suited to
-deployment. Cross-detector comparisons survive both hazards, since every
-detector saw the same images, but absolute accuracies should be treated as
-upper bounds.
+The failure mode is what makes that consequential. Calibration error here
+rises alongside error rate rather than falling, so a detector leaving its
+training distribution does not signal the fact through lower confidence,
+and the abstention and human-review policies built on confidence fail
+exactly where they are needed.
+
+Both measurement hazards we report, the resize convention and the
+PNG-versus-JPEG asymmetry, point the same way: the absolute accuracies in
+this literature are conditional on conventions that are rarely stated.
+Cross-detector comparisons survive, since every detector here saw the same
+images, but absolute numbers should be read as upper bounds until
+benchmarks ship the verification subsets we recommend in
+Section~\ref{sec:recommendations}.
 
 
 \section*{Acknowledgements}
