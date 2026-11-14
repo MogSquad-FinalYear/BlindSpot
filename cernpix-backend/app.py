@@ -6,12 +6,18 @@ import torch
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from PIL import Image
+from realitydefender import RealityDefender, RealityDefenderError
 from werkzeug.utils import secure_filename
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import db
-from config import DEVICE, UPLOAD_DIR
+from config import (
+    DEVICE,
+    REALITY_DEFENDER_API_KEY,
+    REALITY_DEFENDER_FLAG_THRESHOLD,
+    UPLOAD_DIR,
+)
 from detectors import genimagepp_cliplora, npr, universalfakedetect
 from rule_engine import compute_features, select_detector
 
@@ -33,6 +39,14 @@ DETECTOR_DISPLAY_NAMES = {
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp"}
 
 device = torch.device(DEVICE if torch.cuda.is_available() else "cpu")
+
+# None when no key is configured -- _process_image() then just skips the
+# Reality Defender call and keeps the local detector's own score/flagged.
+reality_defender = (
+    RealityDefender(api_key=REALITY_DEFENDER_API_KEY)
+    if REALITY_DEFENDER_API_KEY
+    else None
+)
 
 
 def _is_image(filename: str) -> bool:
@@ -83,6 +97,33 @@ def _process_image(file_storage, folder: str | None) -> dict:
         "features": features,
         "inference_ms": elapsed_ms,
     }
+
+    # Reality Defender second opinion: on success, its score/status replace
+    # this record's score/flagged outright (see config.py for why 0.5).
+    # local_score/local_flagged are kept alongside so the original
+    # detector's call is never actually lost, just no longer the one
+    # `flagged`/`score` report. Runs before db.save_detection so what's
+    # persisted (and what the gallery shows later) matches what this
+    # request returns -- not just this one response.
+    if reality_defender is not None:
+        try:
+            rd_result = reality_defender.detect_file(str(target_path))
+            rd_score = rd_result.get("score")
+            if rd_score is not None:
+                record["local_score"] = record["score"]
+                record["local_flagged"] = record["flagged"]
+                record["score"] = round(float(rd_score), 4)
+                record["flagged"] = rd_score > REALITY_DEFENDER_FLAG_THRESHOLD
+                record["reality_defender"] = {
+                    "status": rd_result.get("status"),
+                    "models": rd_result.get("models", []),
+                }
+        except RealityDefenderError as exc:
+            record["reality_defender_error"] = f"{exc.message} ({exc.code})"
+        except Exception as exc:  # noqa: BLE001 -- a third-party API outage
+            # must not take down local-detector uploads that were working fine
+            record["reality_defender_error"] = str(exc)
+
     return db.save_detection(record)
 
 

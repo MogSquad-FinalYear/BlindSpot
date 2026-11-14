@@ -12,3 +12,4 @@ ftfy
 regex
 scipy
 opencv-python-headless
+realitydefender
