@@ -29,3 +29,31 @@ Thumbs.db
 dire_eval/weights/
 dire_eval/results/
 dire_eval/logs/
+
+# Projects with their own repositories -- never committed here
+# court-system -> github.com/MogSquad-FinalYear/Court-system
+court-system/
+# Veritas -> github.com/MogSquad-FinalYear/Veritas-Frontend
+Veritas/
+# CernPix -> github.com/MogSquad-FinalYear/CernPix
+CernPix/
+# legal-rag-system -> github.com/santhosh292k/legal-rag-system
+legal-rag-system/
+# unpacked duplicate of VideoRAG/frontend
+VideoRAG_Frontend/
+
+# Orchestrator training data: 2.1GB of generated/real image pools, rebuilt by
+# orchestrator/build_manifest.py and build_ladder.py -- see its README.
+cernpix-backend/orchestrator/data/
+
+# Node
+node_modules/
+
+# Archives of directories that are already tracked, or belong elsewhere
+*.zip
+
+# Blank Elsevier Procedia template (26MB); the filled-in paper is in ICMLDE_revised/
+Template_PROCS_ICMLDE_2026/
+
+# Local LaTeX toolchain
+.tex-local/

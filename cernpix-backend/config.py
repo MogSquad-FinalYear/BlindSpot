@@ -25,6 +25,18 @@ MONGODB_COLLECTION = os.environ.get("MONGODB_COLLECTION", "detections")
 
 DEVICE = os.environ.get("DEVICE", "cuda")
 
+# Reality Defender (https://app.realitydefender.ai) is used as a second,
+# hosted opinion layered on top of the local detector pipeline -- see
+# app.py:_process_image. Empty means the override is skipped and the local
+# detector's own score/flagged stand as-is (so a dev box without this key
+# configured still works, same pattern as MONGODB_URI above).
+REALITY_DEFENDER_API_KEY = os.environ.get("API_KEY", "")
+# Reality Defender's top-level "score" is 0-1 (see its DetectionResult),
+# same scale and direction as this app's own detector scores (higher =
+# more likely manipulated). 0.5 matches the boundary between its own
+# AUTHENTIC/MANIPULATED status determination in observed responses.
+REALITY_DEFENDER_FLAG_THRESHOLD = 0.5
+
 # --- Rule-engine thresholds, grounded in paper/*/highpass_energy/*.csv from
 # the BlindSpot project: real photos and DiT-era fakes (flux/sd3/sdxl) sit in
 # the 0.3-0.9 high-frequency log-energy range, GAN-era fakes (BigGAN/GLIDE)
